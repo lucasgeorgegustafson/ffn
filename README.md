@@ -20,23 +20,23 @@ Grammar file should be laid out as follows:
 
 For example, take the following grammar (from Appel):
 
-Z -> d
-Z -> XYZ
-Y ->
-Y -> c
-X -> Y
-X -> a
+Z -> d <br>
+Z -> XYZ <br>
+Y -> <br>
+Y -> c <br>
+X -> Y <br>
+X -> a <br>
 
 The grammar text file should look like:
 
-a c d
-X Y Z
-Z d
-Z XYZ
-Y
-Y c
-X Y
-X a
+a c d <br>
+X Y Z <br>
+Z d <br>
+Z XYZ <br>
+Y <br>
+Y c <br>
+X Y <br>
+X a <br>
 
 Note: Needs modification to accept multi-character symbols (at least terminals).
 
