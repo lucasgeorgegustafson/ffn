@@ -1,0 +1,7 @@
+a b PLUS MINUS
+S E
+S E
+E E PLUS E
+E E MINUS E
+E a
+E b

@@ -7,7 +7,7 @@ def ffn(grammar):
 
         - First line is whitespace delimited terminal symbols
         - Second line is whitespace delimited non-terminal symbols
-        - Remaining lines are productions of the form E xE
+        - Remaining lines are productions of the form E x E (for E -> xE)
         - A production whose right-hand side is the empty string is written
           as a standalone left-hand side. E.g., if the grammar contains the
           production E -> empty string, the production would be represented
@@ -17,32 +17,42 @@ def ffn(grammar):
     """
 
     with open(grammar) as f:
+
         gram = f.read().splitlines()
         terms = gram[0].split()
         non_terms = gram[1].split()
         nullable = set()
         first = {}
         follow = {}
+        nullable_old = set()
+        first_old = {}
+        follow_old = {}
+
         for term in terms:
             first[term] = {term}
         for non_term in non_terms:
             first[non_term] = set()
             follow[non_term] = set()
-        nullable_old = set()
-        first_old = {}
-        follow_old = {}
+
         while nullable_old != nullable or first_old != first or follow_old != follow:
+
             nullable_old = nullable.copy()
             first_old = first.copy()
             follow_old = follow.copy()
+
             for rule in gram[2:]:
+
+                rule = rule.split()
                 ls = rule[0]
-                rs = rule[2:]
+                rs = rule[1:]
                 k = len(rs) - 1
                 i = 0
-                if rs == '':
+
+                if rs == []:
                     nullable.add(ls)
+
                 while i <= k:
+
                     sym_i = 0
                     while sym_i < len(rs):
                         if rs[sym_i] in nullable:
@@ -81,7 +91,12 @@ def ffn(grammar):
                         if sym_i == j and rs[i] not in terms:
                             follow[rs[i]] = follow[rs[i]] | first[rs[j]]
                         j += 1
+
                     i += 1
+
+        for sym in terms:
+            first.pop(sym)
+
         print("nullable: " + str(nullable))
         print("first: " + str(first))
         print("follow: " + str(follow))

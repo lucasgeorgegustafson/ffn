@@ -12,7 +12,7 @@ Grammar file should be laid out as follows:
 
 - First line is whitespace delimited terminal symbols
 - Second line is whitespace delimited non-terminal symbols
-- Remaining lines are productions of the form E xE
+- Remaining lines are productions of the form E x E (for E -> xE)
 - A production whose right-hand side is the empty string is written
   as a standalone left-hand side. E.g., if the grammar contains the
   production E -> empty string, the production would be represented
@@ -32,11 +32,11 @@ The grammar text file should look like:
 a c d <br>
 X Y Z <br>
 Z d <br>
-Z XYZ <br>
+Z X Y Z <br>
 Y <br>
 Y c <br>
 X Y <br>
 X a <br>
 
-Note: Needs modification to accept multi-character symbols (at least terminals).
+Some test grammars are provided.
 

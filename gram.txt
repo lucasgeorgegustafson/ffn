@@ -1,7 +1,0 @@
-a b + -
-S E
-S E
-E E+E
-E E-E
-E a
-E b
